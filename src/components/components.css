@@ -1,0 +1,19 @@
+.square {
+  height: 100px;
+  width: 100px;
+}
+
+.black {
+  background-color: black;
+}
+
+.blue {
+  background-color: lightblue;
+}
+
+.board {
+  width: 850px;
+  margin: auto;
+  display: inline-flex;
+  flex-wrap: wrap;
+}
