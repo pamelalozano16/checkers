@@ -3,12 +3,22 @@
   width: 100px;
 }
 
-.black {
-  background-color: black;
+.brown {
+  background-color: #713a1a;
 }
 
-.blue {
-  background-color: lightblue;
+.gold {
+  background-color: #cea548;
+}
+
+.light-gold {
+  background-color: #caaf5c;
+  border: #713a1a solid 1px;
+}
+
+.dark-brown {
+  background-color: #40291c;
+  border: #cea548 solid 1px;
 }
 
 .board {
@@ -16,4 +26,12 @@
   margin: auto;
   display: inline-flex;
   flex-wrap: wrap;
+}
+
+.piece {
+  width: 80px;
+  height: 80px;
+  margin: 10px 10px;
+  border-radius: 50%;
+  display: inline-block;
 }
