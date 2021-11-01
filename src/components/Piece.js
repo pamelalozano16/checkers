@@ -3,17 +3,26 @@ import './components.css';
 import { Draggable } from 'react-beautiful-dnd';
 
 function Piece(props) {
-    let id = 8*props.row+props.col;
+    let id = 8*props.row+props.col+1;
     let player = props.boardArray[props.row][props.col];
+    let classPlayer;
+
+    if(player === 1) {
+        classPlayer = "piece dark-brown";
+    } else if (player === 2) {
+        classPlayer = "piece light-gold";
+    } else {
+        classPlayer = "piece win";
+    }
+
     return (
-        
         <Draggable key={id.toString()} draggableId={props.row + "," + props.col + "," + player} index={parseInt(id, 10)}>
             { (provided) => (
             <div 
             ref = {provided.innerRef}
             {...provided.draggableProps}
             {...provided.dragHandleProps}
-            className = {(player === 1) ? "piece dark-brown" : "piece light-gold"}
+            className = {classPlayer}
             ></div> 
             ) }
         </Draggable>

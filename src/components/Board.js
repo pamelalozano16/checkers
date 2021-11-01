@@ -3,6 +3,7 @@ import './components.css';
 import Square from './Square'
 import { DragDropContext } from 'react-beautiful-dnd';
 import createInitialBoard  from '../utils/boardPieces';
+import {checkAvailableMoves}  from '../utils/checkMoveUpdate';
 
 const DEAULT_BOARD_SIZE = 8;
 
@@ -19,15 +20,14 @@ function Board() {
 
         //Position index = [i, j, player]
         //New Position index = [i, j]
-        let positionIndex = result.draggableId.split(",");
-        let newPositionIndex = result.destination.droppableId.split(",")
-        let player = parseInt(positionIndex[2], 10);
-        
-        //Replace empty space with piece
+        let position= result.draggableId.split(",").map((x) => { return parseInt(x,10); });
+        let newPositionIndex = result.destination.droppableId.split(",").map((x) => { return parseInt(x,10); });
+        let player = position[2];
+        checkAvailableMoves(pieces, position, newPositionIndex, player);
+
         let updatedPositions = Array.from(pieces);
-        updatedPositions[positionIndex[0]][positionIndex[1]] = 0;
-        updatedPositions[newPositionIndex[0]][newPositionIndex[1]] = player;
         updatePieces(updatedPositions);
+
     }
 
     return (
