@@ -14,6 +14,9 @@ function Board() {
         //Drag and drop out of bound
         if (!result.destination) return;
 
+        //Drag and drop on another piece
+        if (0 < result.destination.index) return;
+
         //Position index = [i, j, player]
         //New Position index = [i, j]
         let positionIndex = result.draggableId.split(",");
