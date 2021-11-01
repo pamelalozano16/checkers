@@ -3,7 +3,7 @@ import './components.css';
 import Square from './Square'
 import { DragDropContext } from 'react-beautiful-dnd';
 import createInitialBoard  from '../utils/boardPieces';
-import {checkAvailableMoves}  from '../utils/checkMoveUpdate';
+import {checkAvailableMoves, checkMoveAndUpdate}  from '../utils/checkAvailableMoves';
 import {PLAYER_1, PLAYER_2, ACCEPT, FINISH}  from '../utils/types';
 
 const DEAULT_BOARD_SIZE = 8;
@@ -12,9 +12,19 @@ let finishedGame = false;
 
 function Board(props) {
     let boardArray = createInitialBoard(DEAULT_BOARD_SIZE);
-    const [pieces, updatePieces] = useState(boardArray);
+    const [board, updateBoard] = useState(boardArray);
+    const [availableMoves, updateAvailableMoves] = useState([]);
+
+    function handleOnDragStart(result) {
+        let position = result.draggableId.split(",").map((x) => { return parseInt(x,10); });
+        let player = position[2];
+        if (player !== turn || finishedGame) { return; }
+        updateAvailableMoves(checkAvailableMoves(board, position, player));
+    }
 
     function handleOnDragEnd(result) {
+        updateAvailableMoves([]);
+
         //Drag and drop out of bound
         if (!result.destination || finishedGame) return;
 
@@ -23,7 +33,7 @@ function Board(props) {
 
         //Position index = [i, j, player]
         //New Position index = [i, j]
-        let position= result.draggableId.split(",").map((x) => { return parseInt(x,10); });
+        let position = result.draggableId.split(",").map((x) => { return parseInt(x,10); });
         let newPositionIndex = result.destination.droppableId.split(",").map((x) => { return parseInt(x,10); });
         let player = position[2];
 
@@ -31,10 +41,10 @@ function Board(props) {
         if (player !== turn) { return; }
 
         //Update board if move is valid
-        let moveStatus = checkAvailableMoves(pieces, position, newPositionIndex, player);
+        let moveStatus = checkMoveAndUpdate(board, player, availableMoves, newPositionIndex, position);
         if (moveStatus === ACCEPT) {
-            let updatedPositions = Array.from(pieces);
-            updatePieces(updatedPositions);
+            let updatedPositions = Array.from(board);
+            updateBoard(updatedPositions);
     
             //Update Turn
             turn = (player === PLAYER_1) ? PLAYER_2 : PLAYER_1;
@@ -46,12 +56,13 @@ function Board(props) {
     }
 
     return (
-        <DragDropContext onDragEnd={handleOnDragEnd}>
+        <DragDropContext onDragEnd={handleOnDragEnd} onDragStart={handleOnDragStart}>
             <div className="board">
-            {Object.keys(pieces).map(row => {
-            return Object.keys(pieces[row]).map(col => {
+            {Object.keys(board).map(row => {
+            return Object.keys(board[row]).map(col => {
                 return (
-                    <Square key={(DEAULT_BOARD_SIZE*row+col)} col={col} row={row} boardArray={pieces}></Square>
+                    <Square key={(DEAULT_BOARD_SIZE*row+col)} col={col} row={row} boardArray={board}
+                    availableMoves={availableMoves}></Square>
                 );
                 });
             })}

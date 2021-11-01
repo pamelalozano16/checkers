@@ -67,3 +67,7 @@
   font-size: 60px;
   background-color: #890f0f;
 }
+
+.available {
+  background: radial-gradient(circle, rgb(153 235 46) 0%, rgb(5 102 3) 100%);
+}
