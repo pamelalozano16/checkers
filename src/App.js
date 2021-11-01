@@ -9,7 +9,10 @@ function App() {
 
   return (
     <div className="App">
-      {(!gameFinished) ? <h2 class="turn">PLAYER {turn}'S TURN</h2> : <h2 class="game-over">GAME OVER</h2>}
+      <div>
+      {(!gameFinished) ? <h2 class={(turn === 1) ? "turn one" : "turn two"}>
+        PLAYER {turn}'S TURN</h2> : <h2 class="game-over">GAME OVER</h2>}
+      </div>
       <Board onChangeTurn={changeTurn} onFinish={finishGame}></Board>
     </div>
   );

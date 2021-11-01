@@ -16,9 +16,21 @@
   border: #713a1a solid 1px;
 }
 
+.two {
+  color: #c29a3d;
+}
+
 .dark-brown {
   background-color: #40291c;
   border: #cea548 solid 1px;
+}
+
+.one {
+  color: #713a1a;
+}
+
+.turn {
+  background-color: lightgoldenrodyellow;
 }
 
 .board {
@@ -40,4 +52,18 @@
   background-image: url("/images/crown.png");
   background-color: lightgoldenrodyellow;
   background-size: contain;
+}
+
+.game-over {
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  text-align: center;
+  padding: 10px;
+  color: #ffffff;
+  top: 30%;
+  font-size: 60px;
+  background-color: #890f0f;
 }
