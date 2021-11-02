@@ -18,31 +18,45 @@ export function checkAvailableMoves(board, position, player) {
     if(player === PLAYER_1) {
         let up = position[0]+1;
         if (up+1 < board.length && 0 <= left-1 //While it's not out of range
-            && PLAYER_2 === board[up][left] && board[up+1][left-1] === EMPTY) { //Check if it's able to eat
+            && PLAYER_2 === board[up][left] && board[up+1][left-1] === EMPTY) { //Check if it's able to capture
             availableMoves.push([up+1, left-1]);
-        } else if (EMPTY === board[up][left]) {
-            availableMoves.push([up, left]);
-        }
+        };
+
         if (up+1 < board.length && right+1 < board.length //While it's not out of range
-            && PLAYER_2 === board[up][right] && board[up+1][right+1] === EMPTY) { //Check if it's able to eat
+            && PLAYER_2 === board[up][right] && board[up+1][right+1] === EMPTY) { //Check if it's able to capture
             availableMoves.push([up+1, right+1]);
-        } else if (EMPTY === board[up][right]) {
-            availableMoves.push([up, right]);
+        };
+
+        if (EMPTY === availableMoves.length) { //If it can't capture enemy move to valid cell
+            if(EMPTY === board[up][left]) {
+                availableMoves.push([up, left])
+            };
+
+            if(EMPTY === board[up][right]) {
+                availableMoves.push([up, right])
+            };
         }
 
     } else {
         let down = position[0]-1;
         if (0 <= down-1 && 0 <= left-1 //While it's not out of range
-            && PLAYER_1 === board[down][left] && board[down-1][left-1] === EMPTY) { //Check if it's able to eat
+            && PLAYER_1 === board[down][left] && board[down-1][left-1] === EMPTY) { //Check if it's able to capture
             availableMoves.push([down-1, left-1]);
-        } else if (EMPTY === board[down][left]) {
-            availableMoves.push([down, left]);
-        }
+        } 
+
         if (0 <= down-1 && right+1 < board.length //While it's not out of range
-            && PLAYER_1 === board[down][right] && board[down-1][right+1] === EMPTY) { //Check if it's able to eat
+            && PLAYER_1 === board[down][right] && board[down-1][right+1] === EMPTY) { //Check if it's able to capture
             availableMoves.push([down-1, right+1]);
-        } else if (EMPTY === board[down][right]) {
-            availableMoves.push([down, right]);
+        }
+        
+        if (EMPTY === availableMoves.length) { //If it can't capture enemy move to valid cell
+            if(EMPTY === board[down][left]) {
+                availableMoves.push([down, left])
+            };
+
+            if(EMPTY === board[down][right]) {
+                availableMoves.push([down, right])
+            };
         }
     }
 
@@ -80,7 +94,7 @@ export function checkMoveAndUpdate(board, player, availableMoves, newPositionInd
     if (player === PLAYER_1) {
         for(let i in board[board.length-1]){
             if(board[board.length-1][i] === PLAYER_1) {
-                    board[0][i] = WINNER;
+                    board[board.length-1][i] = WINNER;
                     status = FINISH;
             }
         }
