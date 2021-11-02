@@ -18,12 +18,14 @@ export function checkAvailableMoves(board, position, player) {
     if(player === PLAYER_1) {
         let up = position[0]+1;
         if (up+1 < board.length && 0 <= left-1 //While it's not out of range
-            && PLAYER_2 === board[up][left] && board[up+1][left-1] === EMPTY) { //Check if it's able to capture
+            && PLAYER_2 === board[up][left] && board[up+1][left-1] === EMPTY) { 
+            //Check if it's able to capture left
             availableMoves.push([up+1, left-1]);
         };
 
         if (up+1 < board.length && right+1 < board.length //While it's not out of range
-            && PLAYER_2 === board[up][right] && board[up+1][right+1] === EMPTY) { //Check if it's able to capture
+            && PLAYER_2 === board[up][right] && board[up+1][right+1] === EMPTY) { 
+            //Check if it's able to capture right
             availableMoves.push([up+1, right+1]);
         };
 
@@ -39,13 +41,13 @@ export function checkAvailableMoves(board, position, player) {
 
     } else {
         let down = position[0]-1;
-        if (0 <= down-1 && 0 <= left-1 //While it's not out of range
-            && PLAYER_1 === board[down][left] && board[down-1][left-1] === EMPTY) { //Check if it's able to capture
+        if (0 <= down-1 && 0 <= left-1
+            && PLAYER_1 === board[down][left] && board[down-1][left-1] === EMPTY) {
             availableMoves.push([down-1, left-1]);
         } 
 
-        if (0 <= down-1 && right+1 < board.length //While it's not out of range
-            && PLAYER_1 === board[down][right] && board[down-1][right+1] === EMPTY) { //Check if it's able to capture
+        if (0 <= down-1 && right+1 < board.length
+            && PLAYER_1 === board[down][right] && board[down-1][right+1] === EMPTY) {
             availableMoves.push([down-1, right+1]);
         }
         
