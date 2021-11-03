@@ -1,6 +1,6 @@
 .square {
-  height: 80px;
-  width: 80px;
+  height: 60px;
+  width: 60px;
 }
 
 .brown {
@@ -44,7 +44,7 @@
 }
 
 .board {
-  width: 650px;
+  width: 480px;
   margin: auto;
   display: inline-flex;
   flex-wrap: wrap;
@@ -53,7 +53,7 @@
 .piece {
   width: 80%;
   height: 80%;
-  margin: 10px 10px;
+  margin: 7px;
   border-radius: 50%;
   display: inline-block;
 }
@@ -79,4 +79,48 @@
 
 .available {
   background: radial-gradient(circle, rgb(153 235 46) 0%, rgb(5 102 3) 100%);
+}
+
+@media screen and (min-height: 600px) {
+  .square {
+    height: 70px;
+    width: 70px;
+  }
+
+  .board {
+    width: 560px;
+  }
+}
+
+@media screen and (min-height: 700px) {
+  .square {
+    height: 80px;
+    width: 80px;
+  }
+
+  .board {
+    width: 640px;
+  }
+}
+
+@media screen and (min-height: 800px) {
+  .square {
+    height: 90px;
+    width: 90px;
+  }
+
+  .board {
+    width: 750px;
+  }
+}
+
+@media screen and (min-height: 900px) {
+  .square {
+    height: 100px;
+    width: 100px;
+  }
+
+  .board {
+    width: 850px;
+  }
 }
