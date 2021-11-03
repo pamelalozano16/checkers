@@ -6,3 +6,4 @@ export const EMPTY = 0;
 export const ACCEPT = 1;
 export const FINISH = 3;
 export const DENY = 2;
+export const DEAULT_BOARD_SIZE = 8;

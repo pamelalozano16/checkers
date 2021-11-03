@@ -5,6 +5,9 @@ let playerCount = new Array(4);
 playerCount[PLAYER_1] = 12;
 playerCount[PLAYER_2] = 12;
 
+/*
+    Check if row and column match an item in array
+*/
 function isInArray(array, row, col) {
     for(let i in array){
         if(array[i][0] === row && array[i][1] === col) {
@@ -14,6 +17,11 @@ function isInArray(array, row, col) {
     return false;
 }
 
+/*
+    Checks if the move done by the player is valid
+    comparing with the availableMoves array.
+    If it is, it updates the board and pieces.
+*/
 export function checkMoveAndUpdate(board, player, availableMoves, newPositionIndex, position) {
     let status = DENY;
     let capturedEnemy = false;
@@ -46,7 +54,6 @@ export function checkMoveAndUpdate(board, player, availableMoves, newPositionInd
         //If enemy is captured keep count of players and check if game is finished
         if(capturedEnemy) {
             (player === PLAYER_1 || player === PLAYER_1_KING) ? playerCount[PLAYER_2]-- : playerCount[PLAYER_1]--;
-            console.log(playerCount);
             if (0 === playerCount[PLAYER_1] || 0 === playerCount[PLAYER_2]) {
                 return FINISH;
             }

@@ -6,6 +6,10 @@ let right;
 let up;
 let down;
 
+/*
+    Checks if the player is able to capture
+    an enemy in any diagonal.
+*/
 export function checkIfItCanEat (player, playerToEat, playerToEatKing, board) {
     if(player !== PLAYER_2) { //Player two can't move up
         if (up+1 < board.length && 0 <= left-1 //While it's not out of range
@@ -41,6 +45,10 @@ export function checkIfItCanEat (player, playerToEat, playerToEatKing, board) {
     return availableMoves;
 }
 
+/*
+    Checks all the available moves for the player
+    that is being dragged, if it can eat that is the only valid move.
+*/
 export function checkAvailableMoves (board, position, player) {
     availableMoves = [];
     left = position[1]-1;

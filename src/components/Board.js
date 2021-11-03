@@ -2,26 +2,25 @@ import React, { useState } from 'react';
 import './components.css';
 import Square from './Square'
 import { DragDropContext } from 'react-beautiful-dnd';
-import createInitialBoard  from '../utils/boardPieces';
+import  { saveGame } from '../utils/localStorage';
 import { checkMoveAndUpdate }  from '../utils/checkMoveAndUpdate';
 import { checkAvailableMoves } from '../utils/checkAvailableMoves';
-import {PLAYER_1, PLAYER_2, ACCEPT, FINISH}  from '../utils/types';
+import {PLAYER_1, PLAYER_2, ACCEPT, FINISH, DEAULT_BOARD_SIZE}  from '../utils/types';
 
-const DEAULT_BOARD_SIZE = 8;
 let turn = PLAYER_1;
 let finishedGame = false;
 
 function Board(props) {
-    let boardArray = createInitialBoard(DEAULT_BOARD_SIZE);
-    const [board, updateBoard] = useState(boardArray);
+    const [board, updateBoard] = useState(props.boardArray);
     const [availableMoves, updateAvailableMoves] = useState([]);
+    turn = props.turn; 
 
     function handleOnDragStart(result) {
         let position = result.draggableId.split(",").map((x) => { return parseInt(x,10); });
         let player = position[2];
         //If it's not a that player's turn (piece or king) return move
         if (( player !== turn && player !== (turn+2) )|| finishedGame) { return; }
-        
+
         updateAvailableMoves(checkAvailableMoves(board, position, player));
     }
 
@@ -53,6 +52,10 @@ function Board(props) {
             //Update Turn
             turn = (turn === PLAYER_1) ? PLAYER_2 : PLAYER_1;
             props.onChangeTurn(turn);
+
+            //Save game in local storage
+            saveGame(board, turn);
+
         } else if(moveStatus === FINISH){
             props.onFinish(true);
             finishedGame = true;

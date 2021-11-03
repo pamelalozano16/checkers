@@ -49,11 +49,12 @@
   border-radius: 10px;
   min-width: 100px;
   color: #720000;
-  margin: 100px;
+  margin: 50px auto;
   font-family: monospace;
   font-size: 20px;
   border: #720000 solid 1px;
   cursor: pointer;
+  display: block;
 }
 
 @keyframes App-logo-spin {
