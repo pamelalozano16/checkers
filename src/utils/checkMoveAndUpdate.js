@@ -1,10 +1,5 @@
 import {PLAYER_1, PLAYER_2, PLAYER_1_KING, PLAYER_2_KING,ACCEPT, FINISH, DENY, EMPTY}  from './types';
 
-//Keep count to finish game if there's no pieces left
-let playerCount = new Array(4);
-playerCount[PLAYER_1] = 12;
-playerCount[PLAYER_2] = 12;
-
 /*
     Check if row and column match an item in array
 */
@@ -22,9 +17,10 @@ function isInArray(array, row, col) {
     comparing with the availableMoves array.
     If it is, it updates the board and pieces.
 */
-export function checkMoveAndUpdate(board, player, availableMoves, newPositionIndex, position) {
+export function checkMoveAndUpdate(board, player, availableMoves, newPositionIndex, position, playerCount) {
     let status = DENY;
     let capturedEnemy = false;
+
 
     if(isInArray(availableMoves, newPositionIndex[0], newPositionIndex[1])) {
         //Move piece

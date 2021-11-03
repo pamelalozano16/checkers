@@ -2,21 +2,25 @@ import React, {useState} from "react";
 import './App.css';
 import Board from "./components/Board";
 import createInitialBoard  from './utils/boardPieces';
-import  {getLastGame, getLastTurn} from './utils/localStorage';
-import {PLAYER_1, DEAULT_BOARD_SIZE}  from './utils/types';
+import  {getLastGame, getLastTurn, getPlayerCount} from './utils/localStorage';
+import {PLAYER_1, PLAYER_2, DEAULT_BOARD_SIZE}  from './utils/types';
 
 function App() {
   const [turn, changeTurn] = useState(PLAYER_1);
+  const [playerCount, updatePlayerCount] = useState([0, 12, 12, 0]);
   const [gameFinished, finishGame] = useState(false);
   const [gameStarted, startGame] = useState(false);
   const [board, changeBoardStatus] = useState (createInitialBoard(DEAULT_BOARD_SIZE));
 
+
   function restoreGame () {
     let lastGame = getLastGame();
     let lastTurn = getLastTurn();
+    let lastPlayerCount = getPlayerCount();
     if (lastGame) {
       changeBoardStatus(Array.from(lastGame));
       changeTurn(lastTurn);
+      updatePlayerCount(lastPlayerCount);
     }
     startGame(true);
   }
@@ -41,6 +45,8 @@ function App() {
         onChangeTurn={changeTurn} 
         onFinish={finishGame}
         boardArray={board}
+        playerCount = {playerCount}
+        updatePlayerCount = {updatePlayerCount}
         ></Board>
       </div>)}
     </div>

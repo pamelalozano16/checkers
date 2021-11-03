@@ -9,12 +9,14 @@ import {PLAYER_1, PLAYER_2, ACCEPT, FINISH, DEAULT_BOARD_SIZE}  from '../utils/t
 
 let turn = PLAYER_1;
 let finishedGame = false;
+let playerCount;
 
 function Board(props) {
     const [board, updateBoard] = useState(props.boardArray);
     const [availableMoves, updateAvailableMoves] = useState([]);
-    turn = props.turn; 
-
+    turn = props.turn;
+    playerCount = props.playerCount;
+    
     function handleOnDragStart(result) {
         let position = result.draggableId.split(",").map((x) => { return parseInt(x,10); });
         let player = position[2];
@@ -44,7 +46,7 @@ function Board(props) {
         if ( player !== turn && player !== (turn+2) ) { return; }
 
         //Update board if move is valid
-        let moveStatus = checkMoveAndUpdate(board, player, availableMoves, newPositionIndex, position);
+        let moveStatus = checkMoveAndUpdate(board, player, availableMoves, newPositionIndex, position, playerCount);
         if (moveStatus === ACCEPT) {
             let updatedPositions = Array.from(board);
             updateBoard(updatedPositions);
@@ -54,7 +56,8 @@ function Board(props) {
             props.onChangeTurn(turn);
 
             //Save game in local storage
-            saveGame(board, turn);
+            saveGame(board, turn, playerCount);
+            props.updatePlayerCount(playerCount);
 
         } else if(moveStatus === FINISH){
             props.onFinish(true);
