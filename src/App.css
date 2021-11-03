@@ -28,6 +28,34 @@
   color: #61dafb;
 }
 
+.menu {
+  height: 500px;
+  width: 500px;
+  padding: 50px;
+  border-radius: 10%;
+  background-image: url("/images/wood.jpeg");
+  background-size: contain;
+  margin: 100px auto;
+}
+
+.menu h2 {
+  font-family: monospace;
+  font-size: 40px;
+  color: #720000;
+}
+
+.menu button {
+  padding: 20px;
+  border-radius: 10px;
+  min-width: 100px;
+  color: #720000;
+  margin: 100px;
+  font-family: monospace;
+  font-size: 20px;
+  border: #720000 solid 1px;
+  cursor: pointer;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

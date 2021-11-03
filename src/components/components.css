@@ -51,8 +51,8 @@
 }
 
 .piece {
-  width: 80px;
-  height: 80px;
+  width: 80%;
+  height: 80%;
   margin: 10px 10px;
   border-radius: 50%;
   display: inline-block;
@@ -74,7 +74,7 @@
   color: #ffffff;
   top: 30%;
   font-size: 60px;
-  background-color: #890f0f;
+  background-color: #720000;
 }
 
 .available {

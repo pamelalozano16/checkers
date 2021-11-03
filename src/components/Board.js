@@ -3,7 +3,8 @@ import './components.css';
 import Square from './Square'
 import { DragDropContext } from 'react-beautiful-dnd';
 import createInitialBoard  from '../utils/boardPieces';
-import {checkAvailableMoves, checkMoveAndUpdate}  from '../utils/checkAvailableMoves';
+import { checkMoveAndUpdate }  from '../utils/checkMoveAndUpdate';
+import { checkAvailableMoves } from '../utils/checkAvailableMoves';
 import {PLAYER_1, PLAYER_2, ACCEPT, FINISH}  from '../utils/types';
 
 const DEAULT_BOARD_SIZE = 8;
@@ -18,11 +19,14 @@ function Board(props) {
     function handleOnDragStart(result) {
         let position = result.draggableId.split(",").map((x) => { return parseInt(x,10); });
         let player = position[2];
+        //If it's not a that player's turn (piece or king) return move
         if (( player !== turn && player !== (turn+2) )|| finishedGame) { return; }
+        
         updateAvailableMoves(checkAvailableMoves(board, position, player));
     }
 
     function handleOnDragEnd(result) {
+        //Reset available squares
         updateAvailableMoves([]);
 
         //Drag and drop out of bound
