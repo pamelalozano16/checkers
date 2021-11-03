@@ -11,8 +11,10 @@ function Piece(props) {
         classPlayer = "piece dark-brown";
     } else if (player === 2) {
         classPlayer = "piece light-gold";
+    } else if (player === 3){
+        classPlayer = "piece light-brown king";
     } else {
-        classPlayer = "piece win";
+        classPlayer = "piece dark-gold king";
     }
 
     return (

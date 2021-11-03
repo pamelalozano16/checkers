@@ -7,12 +7,22 @@
   background-color: #713a1a;
 }
 
+.light-brown {
+  background-color: #835c46;
+  border: #cea548 solid 1px;
+}
+
 .gold {
   background-color: #cea548;
 }
 
 .light-gold {
   background-color: #caaf5c;
+  border: #713a1a solid 1px;
+}
+
+.dark-gold {
+  background-color: #ac8938;
   border: #713a1a solid 1px;
 }
 
@@ -48,9 +58,8 @@
   display: inline-block;
 }
 
-.win {
+.king {
   background-image: url("/images/crown.png");
-  background-color: lightgoldenrodyellow;
   background-size: contain;
 }
 

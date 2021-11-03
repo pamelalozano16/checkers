@@ -18,7 +18,7 @@ function Board(props) {
     function handleOnDragStart(result) {
         let position = result.draggableId.split(",").map((x) => { return parseInt(x,10); });
         let player = position[2];
-        if (player !== turn || finishedGame) { return; }
+        if (( player !== turn && player !== (turn+2) )|| finishedGame) { return; }
         updateAvailableMoves(checkAvailableMoves(board, position, player));
     }
 
@@ -38,7 +38,7 @@ function Board(props) {
         let player = position[2];
 
         //If the player moves in the other's turn
-        if (player !== turn) { return; }
+        if ( player !== turn && player !== (turn+2) ) { return; }
 
         //Update board if move is valid
         let moveStatus = checkMoveAndUpdate(board, player, availableMoves, newPositionIndex, position);
@@ -47,7 +47,7 @@ function Board(props) {
             updateBoard(updatedPositions);
     
             //Update Turn
-            turn = (player === PLAYER_1) ? PLAYER_2 : PLAYER_1;
+            turn = (turn === PLAYER_1) ? PLAYER_2 : PLAYER_1;
             props.onChangeTurn(turn);
         } else if(moveStatus === FINISH){
             props.onFinish(true);
