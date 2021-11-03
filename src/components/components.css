@@ -1,6 +1,6 @@
 .square {
-  height: 100px;
-  width: 100px;
+  height: 80px;
+  width: 80px;
 }
 
 .brown {
@@ -44,7 +44,7 @@
 }
 
 .board {
-  width: 850px;
+  width: 650px;
   margin: auto;
   display: inline-flex;
   flex-wrap: wrap;
