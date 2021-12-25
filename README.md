@@ -1,5 +1,5 @@
 # Deployed version
-[Demo Link] (https://pamela-checkers.herokuapp.com/)
+[Demo Link](https://pamela-checkers.herokuapp.com/)
 
 # Demo Images
 <img width="647" alt="Captura de Pantalla 2021-12-24 a la(s) 19 02 29" src="https://user-images.githubusercontent.com/30474787/147375260-5e1f4bde-1eea-4a54-91be-7e627620b1b3.png">
