@@ -1,3 +1,21 @@
+# Deployed version
+[Demo Link] (https://pamela-checkers.herokuapp.com/)
+
+# Demo Images
+<img width="647" alt="Captura de Pantalla 2021-12-24 a la(s) 19 02 29" src="https://user-images.githubusercontent.com/30474787/147375260-5e1f4bde-1eea-4a54-91be-7e627620b1b3.png">
+<img width="723" alt="Captura de Pantalla 2021-12-24 a la(s) 19 02 23" src="https://user-images.githubusercontent.com/30474787/147375262-a9a80df8-4252-4ad1-bd7c-3c83957888e0.png">
+
+# Supported Features
+- Basic game mechanics: taking turns, basic moves and jumps over the enemy checkers.
+- Players are able to drag-n-drop checkers using a mouse.
+- On mouse over checker, highlighted cells are possible moves.
+- If there is an opportunity to capture an enemy checker - it's the only valid move
+- No-brain AI player: player can make a move to any random valid cell
+- King checkers mechanics (when a checker hits the last row and gets an ability to move backwards)
+- The game state can be restored in case the page is reloaded
+- Board and checkers drawn with DOM/CSS
+- App is stable across major browsers
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
